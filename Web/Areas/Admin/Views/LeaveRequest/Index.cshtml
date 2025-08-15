@@ -1,0 +1,64 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@using HRManagement.Entitites
+@model List<HRManagement.DTOs.LeaveRequestDto>
+
+@{
+    ViewData["Title"] = "İzin Talepleri";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h3 class="mb-4">İzin Talepleri</h3>
+
+@foreach (var leave in Model)
+{
+    string statusLabel = leave.Status switch
+    {
+        LeaveStatus.Pending => "Beklemede",
+        LeaveStatus.Approved => "Onaylandı",
+        LeaveStatus.Rejected => "Reddedildi",
+        _ => "Bilinmiyor"
+    };
+
+    string badgeColor = leave.Status switch
+    {
+        LeaveStatus.Pending => "warning",
+        LeaveStatus.Approved => "success",
+        LeaveStatus.Rejected => "danger",
+        _ => "secondary"
+    };
+
+    <div class="card mb-3 shadow-sm">
+        <div class="card-body d-flex flex-column flex-md-row justify-content-between">
+            <!-- Kullanıcı ve departman -->
+            <div style="width: 20%">
+                <div class="fw-semibold">@leave.UserName</div>
+                <div class="text-muted">@leave.DepartmentName</div>
+            </div>
+
+            <!-- Tarihler -->
+            <div style="width: 25%">
+                <small>Başlangıç: @leave.StartDate.ToShortDateString()</small><br />
+                <small>Bitiş: @leave.EndDate.ToShortDateString()</small><br />
+                <small>Oluşturulma: @leave.CreatedAt.ToShortDateString()</small>
+            </div>
+
+            <!-- Açıklama -->
+            <div style="width: 30%">
+                <p class="mb-1"><strong>Açıklama:</strong> @leave.Reason</p>
+                @if (!string.IsNullOrWhiteSpace(leave.ManagerNote))
+                {
+                    <p class="text-muted mb-0"><strong>Yönetici Notu:</strong> @leave.ManagerNote</p>
+                }
+            </div>
+
+            <!-- Durum -->
+            <div style="width: 15%" class="text-end">
+                <span class="badge bg-@badgeColor">@statusLabel</span>
+            </div>
+        </div>
+    </div>
+}

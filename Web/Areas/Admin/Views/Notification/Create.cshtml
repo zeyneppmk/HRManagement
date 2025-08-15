@@ -1,0 +1,34 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model HRManagement.DTOs.AppNotificationDto
+@{
+    ViewBag.Title = "Yeni Mesaj";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Yeni Mesaj</h3>
+<form asp-action="Create" method="post">
+    <div class="mb-3">
+        <label>Alıcı</label>
+        <input asp-for="ReceiverId" class="form-control" placeholder="Kullanıcı ID girin" />
+    </div>
+    <div class="mb-3">
+        <label>Başlık</label>
+        <input asp-for="Title" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label>Mesaj</label>
+        <textarea asp-for="Message" class="form-control" rows="4"></textarea>
+    </div>
+    <div class="mb-3">
+        <label>Tip</label>
+        <select asp-for="Type" class="form-select">
+            <option value="Info">Bilgi</option>
+            <option value="Warning">Uyarı</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Gönder</button>
+</form>

@@ -1,0 +1,127 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<link href="https://cdn.jsdelivr.net/npm/apexcharts@3.35.3/dist/apexcharts.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+<div class="container-fluid px-4">
+    <div class="row g-3 mb-4">
+        <div class="col-md-4">
+            <div class="card text-white bg-primary shadow-sm">
+                <div class="card-body d-flex justify-content-between align-items-center">
+                    <div>
+                        <div class="text-white-50 small">Erkek Personel</div>
+                        <h3 class="mb-0">@ViewBag.MaleCount</h3>
+                    </div>
+                    <i class="fas fa-mars fa-2x"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-white bg-danger shadow-sm">
+                <div class="card-body d-flex justify-content-between align-items-center">
+                    <div>
+                        <div class="text-white-50 small">Kadın Personel</div>
+                        <h3 class="mb-0">@ViewBag.FemaleCount</h3>
+                    </div>
+                    <i class="fas fa-venus fa-2x"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card bg-secondary text-white shadow-sm">
+                <div class="card-body text-center">
+                    <div class="text-white-50 small">Toplam Personel</div>
+                    <h3>@ViewBag.TotalUsers</h3>
+                    <i class="fas fa-users fa-2x mt-2"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-3 mb-4">
+        <div class="col-lg-6">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h6 class="text-muted">Departmanlara Göre Maaşlar</h6>
+                    <div id="salaryChart"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h6 class="text-muted">Etkinlik vs İzin</h6>
+                    <div id="eventLeaveChart"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h6 class="text-muted">Aylık Maaş Gelişimi</h6>
+                    <div id="monthlySalaryChart"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var genderChart = new ApexCharts(document.querySelector("#genderChart"), {
+        chart: { type: 'donut', width: 200 },
+        series: [@ViewBag.MaleCount, @ViewBag.FemaleCount],
+        labels: ['Erkek', 'Kadın'],
+        colors: ['#5DADE2', '#EC7063'],
+        legend: { position: 'bottom' }
+    });
+    genderChart.render();
+
+    var salaryChart = new ApexCharts(document.querySelector("#salaryChart"), {
+        chart: { type: 'bar', height: 250 },
+        series: [{
+            name: 'Toplam Maaş',
+            data: @Html.Raw(Json.Serialize(ViewBag.DepartmentTotals))
+        }],
+        xaxis: {
+            categories: @Html.Raw(Json.Serialize(ViewBag.DepartmentLabels))
+        },
+        colors: ['#58D68D']
+    });
+    salaryChart.render();
+
+    var eventLeaveChart = new ApexCharts(document.querySelector("#eventLeaveChart"), {
+        chart: { type: 'donut', width: 300 },
+        series: [@ViewBag.ThisMonthEvent, @ViewBag.LeaveUsers],
+        labels: ['Bu Ayki Etkinlikler', 'Bugünkü İzinler'],
+        colors: ['#F4D03F', '#BB8FCE'],
+        legend: { position: 'bottom' }
+    });
+    eventLeaveChart.render();
+
+    document.addEventListener("DOMContentLoaded", function () {
+        var options = {
+            chart: {
+                type: 'line',
+                height: 250
+            },
+            series: [{
+                name: 'Aylık Maaş',
+                data: @Html.Raw(Json.Serialize(ViewBag.MonthTotals))
+            }],
+            xaxis: {
+                categories: @Html.Raw(Json.Serialize(ViewBag.MonthLabels))
+            },
+            colors: ['#5B2C6F']
+        };
+
+        var chart = new ApexCharts(document.querySelector("#monthlySalaryChart"), options);
+        chart.render();
+    });
+</script>

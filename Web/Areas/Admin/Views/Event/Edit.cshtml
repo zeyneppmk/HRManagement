@@ -1,0 +1,55 @@
+﻿@model HRManagement.DTOs.EventDto
+
+@{
+    ViewData["Title"] = "Etkinlik Düzenle";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h3 class="mb-3">Etkinlik Düzenle</h3>
+
+<form method="post" action="/Admin/Event/Edit">
+    <input type="hidden" name="EventId" value="@Model.EventId" />
+
+    <div class="mb-3">
+        <label for="Title" class="form-label">Etkinlik Başlığı</label>
+        <input name="Title" id="Title" class="form-control" value="@Model.Title" />
+    </div>
+
+    <div class="mb-3">
+        <label for="Description" class="form-label">Açıklama</label>
+        <textarea name="Description" id="Description" class="form-control">@Model.Description</textarea>
+    </div>
+
+    <div class="mb-3">
+        <label for="StartDate" class="form-label">Başlangıç Tarihi</label>
+        <input name="StartDate" id="StartDate" type="date" class="form-control"
+               value="@Model.StartDate.ToString("yyyy-MM-dd")" />
+    </div>
+
+    <div class="mb-3">
+        <label for="EndDate" class="form-label">Bitiş Tarihi</label>
+        <input name="EndDate" id="EndDate" type="date" class="form-control"
+               value="@(Model.EndDate.HasValue ? Model.EndDate.Value.ToString("yyyy-MM-dd") : "")" />
+    </div>
+
+    <div class="form-check mb-3">
+        <input name="IsFullDay" id="IsFullDay" type="checkbox" class="form-check-input" @(Model.IsFullDay ? "checked" : "") />
+        <label for="IsFullDay" class="form-check-label">Tüm Gün mü?</label>
+    </div>
+
+    <div class="form-check mb-3">
+        <input name="IsRepeatable" id="IsRepeatable" type="checkbox" class="form-check-input" @(Model.IsRepeatable ? "checked" : "") />
+        <label for="IsRepeatable" class="form-check-label">Tekrarlayan Etkinlik mi?</label>
+    </div>
+
+    <div class="mb-3">
+        <label for="Type" class="form-label">Etkinlik Tipi</label>
+        <select name="Type" id="Type" class="form-select">
+            <option value="0" @(Model.Type == HRManagement.Entitites.EventType.General ? "selected" : "")>Genel</option>
+            <option value="1" @(Model.Type == HRManagement.Entitites.EventType.Holiday ? "selected" : "")>Resmi Tatil</option>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Güncelle</button>
+    <a href="/Admin/Event/CalendarList" class="btn btn-secondary">Geri Dön</a>
+</form>

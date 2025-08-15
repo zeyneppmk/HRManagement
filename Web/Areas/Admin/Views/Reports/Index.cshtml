@@ -1,0 +1,351 @@
+﻿@{
+    ViewData["Title"] = "Raporlar";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+<div class="container-fluid py-4">
+    <h2 class="mb-4">Genel Raporlar</h2>
+
+    <!-- Genel Bilgi Kartlari -->
+    <div class="row g-3 mb-4">
+        <div class="col-md-3">
+            <div class="card text-white" style="background: linear-gradient(135deg, #6a11cb, #2575fc);">
+                <div class="card-body">
+                    <h5 class="card-title">Toplam Kullanıcı</h5>
+                    <h3 id="totalUsers">...</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-white" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+                <div class="card-body">
+                    <h5 class="card-title">Departman Sayısı</h5>
+                    <h3 id="totalDepartments">...</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card text-white" style="background: linear-gradient(135deg, #43cea2, #185a9d);">
+                <div class="card-body">
+                    <h5 class="card-title">Ortalama Maaş</h5>
+                    <h3 id="avgPaidSalary">...</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card text-white" style="background: linear-gradient(135deg, #f7971e, #ffd200);">
+                <div class="card-body">
+                    <h5 class="card-title">Toplam Görev</h5>
+                    <h3 id="totalTasks">...</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Departman bazlı çalışan sayısı -->
+    <div class="card shadow-sm mb-4">
+        <div class="card-header bg-transparent">
+            <h5 class="mb-0">Departmanlara Göre Çalışan Sayısı</h5>
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Departman</th>
+                        <th>Çalışan Sayısı</th>
+                        <th>İsimler</th>
+                    </tr>
+                </thead>
+                <tbody id="employeeByDepartmentBody"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Departman Müdürleri -->
+    <div class="card shadow-sm mb-4">
+        <div class="card-header bg-transparent">
+            <h5 class="mb-0">Departman Müdürleri</h5>
+        </div>
+        <div class="card-body">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Ad Soyad</th>
+                        <th>Departman</th>
+                    </tr>
+                </thead>
+                <tbody id="departmentManagersBody"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<h4 class="mt-4 mb-3">Tatiller</h4>
+<div class="row g-4 mb-4">
+
+    <!-- Resmi Tatiller -->
+    <div class="col-md-6">
+        <div class="card text-white shadow" style="
+            background: linear-gradient(135deg, #43cea2, #185a9d);">
+            <div class="card-body">
+                <h5 class="card-title">Resmi Tatiller</h5>
+                <h2 id="officialHolidayCount">0</h2>
+            </div>
+        </div>
+    </div>
+
+    <!-- Şirket Etkinlikleri -->
+    <div class="col-md-6">
+        <div class="card text-white shadow" style="
+            background: linear-gradient(135deg, #43cea2, #185a9d);">
+            <div class="card-body">
+                <h5 class="card-title">Şirket Etkinlikleri</h5>
+                <h2 id="generalEventCount">0</h2>
+            </div>
+        </div>
+    </div>
+</div>
+<h4 class="mt-4 mb-3">Bildirimler</h4>
+<div class="row g-4 mb-4">
+    <!-- Bildirim Türlerine Göre Sayılar -->
+    <div class="col-md-12">
+        <div class="card text-white shadow" style="
+            background: linear-gradient(135deg, #667eea, #764ba2);">
+            <div class="card-body">
+                <h5 class="card-title">Bildirim Türlerine Göre Dağılım</h5>
+                <ul class="list-group list-group-flush text-white" id="notificationTypeList" style="background-color: transparent;">
+                    <!-- Dinamik olarak dolacak -->
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Kimden kime bildirim gönderildi tablosu -->
+<div class="card shadow-sm mb-4 text-dark position-relative overflow-hidden" style="
+    border-radius: 15px;
+    min-height: 250px;
+    background-color: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(6px);">
+
+    <!-- Blurlu arka plan resmi -->
+    <div style="
+        position: absolute;
+        inset: 0;
+        background: url('C:\Users\pamuk\source\repos\HRManagement\Web\wwwroot\img\blur-notification.jpg') center/cover no-repeat;
+        filter: blur(8px) brightness(0.7);
+        z-index: 0;
+    "></div>
+
+    <!-- İçerik katmanı -->
+    <div class="card-body position-relative" style="z-index: 1;">
+        <h5 class="card-title">Bildirim Gönderim Detayları</h5>
+        <table class="table table-bordered bg-white rounded">
+            <thead>
+                <tr>
+                    <th>Gönderen</th>
+                    <th>Alıcı</th>
+                    <th>Başlık</th>
+                    <th>Tür</th>
+                    <th>Tarih</th>
+                </tr>
+            </thead>
+            <tbody id="notificationDetailBody"></tbody>
+        </table>
+    </div>
+</div>
+
+<h4 class="mt-4 mb-3">Departman Bazlı Maaş Raporu</h4>
+
+<!-- Toplamlar Kartı -->
+<div class="row g-4 mb-4" id="departmentSalaryCards"></div>
+
+<!-- Max-Min Maaş Tablosu -->
+<div class="card shadow-sm mb-4 text-dark" style="background-color: rgba(240,240,240,0.5); backdrop-filter: blur(4px); border-radius: 12px;">
+    <div class="card-header bg-transparent">
+        <h5 class="mb-0">Maksimum ve Minimum Maaş Alanlar</h5>
+    </div>
+    <div class="card-body">
+        <table class="table table-hover table-bordered bg-white rounded">
+            <thead>
+                <tr>
+                    <th>Tür</th>
+                    <th>Kullanıcı</th>
+                    <th>Departman</th>
+                    <th>Rol</th>
+                    <th>Maaş</th>
+                </tr>
+            </thead>
+            <tbody id="salaryExtremesBody"></tbody>
+        </table>
+    </div>
+</div>
+
+<h4 class="mt-4">Maaş Ödeme Detayları</h4>
+<div class="table-responsive mb-4">
+    <table class="table table-hover table-striped shadow-sm" style="background-color: rgba(255,255,255,0.85); backdrop-filter: blur(4px); border-radius: 10px;">
+        <thead class="table-dark">
+            <tr>
+                <th>Kullanıcı</th>
+                <th>Departman</th>
+                <th>Pozisyon</th>
+                <th>Maaş</th>
+                <th>Ay</th>
+                <th>Ödeme Tarihi</th>
+            </tr>
+        </thead>
+        <tbody id="paymentDetailsBody">
+        </tbody>
+    </table>
+</div>
+
+
+<script>
+     fetch('/Admin/Reports/PaymentDetailsReport')
+         .then(res => res.json())
+         .then(data => {
+             const tbody = document.getElementById("paymentDetailsBody");
+             tbody.innerHTML = ""; // Temizle
+
+             data.forEach(item => {
+                 const row = `
+                     <tr>
+                         <td>${item.user ?? '-'}</td>
+                         <td>${item.department ?? '-'}</td>
+                         <td>${item.position ?? '-'}</td>
+                         <td>${item.amount ? item.amount.toLocaleString('tr-TR', { style: 'currency', currency: 'TRY' }) : '-'}</td>
+                         <td>${item.period ?? '-'}</td>
+                         <td>${item.date ?? '-'}</td>
+                     </tr>
+                 `;
+                 tbody.innerHTML += row;
+             });
+         });
+
+
+</script>
+
+<script>
+    fetch("/Admin/Reports/DepartmentSalaryReport")
+        .then(res => res.json())
+        .then(data => {
+            // Kartlar
+            const row = document.getElementById("departmentSalaryCards");
+            data.totals.forEach(item => {
+                const col = document.createElement("div");
+                col.className = "col-md-3";
+                col.innerHTML = `
+                    <div class="card text-white shadow" style="background: linear-gradient(to right, #6a11cb, #2575fc); border-radius: 15px;">
+                        <div class="card-body">
+                            <h6 class="card-title">${item.department}</h6>
+                            <h4>${item.total.toLocaleString()} ₺</h4>
+                        </div>
+                    </div>
+                `;
+                row.appendChild(col);
+            });
+
+            // Max/Min tablo
+            const body = document.getElementById("salaryExtremesBody");
+            ["Max", "Min"].forEach(type => {
+                const item = data[type.toLowerCase()];
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${type}</td>
+                    <td>${item.user}</td>
+                    <td>${item.department}</td>
+                    <td>${item.role}</td>
+                    <td>${item.amount.toLocaleString()} ₺</td>
+                `;
+                body.appendChild(row);
+            });
+        });
+</script>
+
+
+
+<script>
+    fetch("/Admin/Reports/NotificationsByType")
+        .then(res => res.json())
+        .then(data => {
+            const list = document.getElementById("notificationTypeList");
+            data.forEach(item => {
+                const li = document.createElement("li");
+                li.classList.add("list-group-item", "bg-transparent", "border-0");
+                li.innerText = `${item.type} - ${item.count} adet`;
+                list.appendChild(li);
+            });
+        });
+
+    fetch("/Admin/Reports/NotificationDetails")
+        .then(res => res.json())
+        .then(data => {
+            const body = document.getElementById("notificationDetailBody");
+            data.forEach(n => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${n.sender}</td>
+                    <td>${n.receiver}</td>
+                    <td>${n.title}</td>
+                    <td>${n.type}</td>
+                    <td>${new Date(n.createdAt).toLocaleDateString()}</td>
+                `;
+                body.appendChild(row);
+            });
+        });
+</script>
+
+
+<script>
+    fetch("/Admin/Reports/EventsGrouped")
+        .then(res => res.json())
+        .then(data => {
+            document.getElementById("officialHolidayCount").innerText = data.officialHolidays.length;
+            document.getElementById("generalEventCount").innerText = data.generalEvents.length;
+        });
+</script>
+
+
+<script>
+    fetch("/Admin/Reports/GeneralStats")
+        .then(res => res.json())
+        .then(data => {
+            document.getElementById("totalUsers").innerText = data.totalUsers;
+            document.getElementById("totalDepartments").innerText = data.totalDepartments;
+            document.getElementById("avgPaidSalary").innerText = data.avgPaidSalary.toFixed(2) + " ₺";
+            document.getElementById("totalTasks").innerText = data.totalTasks;
+        });
+
+    fetch("/Admin/Reports/EmployeesByDepartment")
+        .then(res => res.json())
+        .then(data => {
+            const body = document.getElementById("employeeByDepartmentBody");
+            data.forEach(d => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${d.department ?? '-'}</td>
+                    <td>${d.employeeCount}</td>
+                    <td>${d.employees.join(", ")}</td>
+                `;
+                body.appendChild(row);
+            });
+        });
+
+    fetch("/Admin/Reports/DepartmentManagers")
+        .then(res => res.json())
+        .then(data => {
+            const body = document.getElementById("departmentManagersBody");
+            data.forEach(m => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${m.firstName} ${m.lastName}</td>
+                    <td>${m.department}</td>
+                `;
+                body.appendChild(row);
+            });
+        });
+</script>

@@ -1,0 +1,22 @@
+﻿
+
+@model HRManagement.DTOs.DepartmentDto
+
+@{
+    ViewData["Title"] = "Departman Düzenle";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h3 class="mb-3">Departman Düzenle</h3>
+
+<form method="post" action="/Admin/Department/Edit">
+    <input type="hidden" name="DepartmentId" value="@Model.DepartmentId" />
+
+    <div class="mb-3">
+        <label for="DepartmentName" class="form-label">Departman Adı</label>
+        <input name="DepartmentName" id="DepartmentName" class="form-control" value="@Model.DepartmentName" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Güncelle</button>
+    <a href="/Admin/Department/Index" class="btn btn-secondary">Geri Dön</a>
+</form>

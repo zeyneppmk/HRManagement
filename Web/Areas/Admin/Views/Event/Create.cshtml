@@ -1,0 +1,51 @@
+﻿@model HRManagement.DTOs.EventDto
+
+@{
+    ViewData["Title"] = "Yeni Etkinlik";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Yeni Etkinlik</h3>
+<form method="post" asp-action="Create">
+    <div class="mb-3">
+        <label class="form-label">Etkinlik Başlığı</label>
+        <input asp-for="Title" class="form-control" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Açıklama</label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Başlangıç Tarihi</label>
+        <input asp-for="StartDate" type="date" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Bitiş Tarihi</label>
+        <input asp-for="EndDate" type="date" class="form-control" />
+    </div>
+
+    <div class="form-check mb-3">
+        <input asp-for="IsFullDay" type="checkbox" class="form-check-input" />
+        <label class="form-check-label" for="IsFullDay">Tüm Gün mü?</label>
+    </div>
+
+    <div class="form-check mb-3">
+        <input asp-for="IsRepeatable" type="checkbox" class="form-check-input" />
+        <label class="form-check-label" for="IsRepeatable">Tekrarlanır mı?</label>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Etkinlik Tipi</label>
+        <select asp-for="Type" class="form-select">
+            <option value="0">Genel</option>
+            <option value="1">Resmi Tatil</option>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Kaydet</button>
+    <a asp-action="CalendarList" class="btn btn-secondary">Geri Dön</a>
+</form>

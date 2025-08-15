@@ -1,0 +1,67 @@
+﻿@model List<HRManagement.DTOs.UserDto>
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Kullanıcı Listesi";
+}
+
+<h2 class="mb-4">Kullanıcı Listesi</h2>
+
+<a class="btn btn-primary mb-3" href="/Admin/User/Create">Yeni Kullanıcı Ekle</a>
+<form method="get" class="row g-2 mb-3">
+    <div class="col-md-4">
+        <input type="text" name="search" value="@Context.Request.Query["search"]" class="form-control" placeholder="Ad, Soyad, Email">
+    </div>
+    <div class="col-md-3">
+        <select name="departmentId" class="form-select">
+            <option value="">Tüm Departmanlar</option>
+            @foreach (var dep in ViewBag.Departments as List<SelectListItem>)
+            {
+                <option value="@dep.Value" @(Context.Request.Query["departmentId"] == dep.Value ? "selected" : "")>@dep.Text</option>
+            }
+        </select>
+    </div>
+    <div class="col-md-3">
+        <select name="roleId" class="form-select">
+            <option value="">Tüm Roller</option>
+            @foreach (var role in ViewBag.Roles as List<SelectListItem>)
+            {
+                <option value="@role.Value" @(Context.Request.Query["roleId"] == role.Value ? "selected" : "")>@role.Text</option>
+            }
+        </select>
+    </div>
+    <div class="col-md-2">
+        <button type="submit" class="btn btn-primary w-100"><i class="fas fa-search"></i> Filtrele</button>
+    </div>
+</form>
+
+
+<table class="table table-bordered">
+    <thead class="table-dark">
+        <tr>
+            <th>Ad</th>
+            <th>Soyad</th>
+            <th>Email</th>
+            <th>Rol ID</th>
+            <th>Departman ID</th>
+            <th>Durum</th>
+            <th>İşlemler</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.FirstName</td>
+                <td>@user.LastName</td>
+                <td>@user.Email</td>
+                <td>@user.RoleId</td>
+                <td>@user.DepartmentId</td>
+                <td>@(user.IsActive ? "Aktif" : "Pasif")</td>
+                <td>
+                    <a class="btn btn-sm btn-info" href="/Admin/User/Edit/@user.UserId">Düzenle</a>
+                    <a class="btn btn-sm btn-danger" href="/Admin/User/Delete/@user.UserId">Sil</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

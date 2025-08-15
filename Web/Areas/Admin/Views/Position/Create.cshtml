@@ -1,0 +1,33 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model HRManagement.DTOs.PozisyonDto
+@{
+    ViewData["Title"] = "Pozisyon Ekle";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h3 class="mb-3">Yeni Pozisyon Ekle</h3>
+
+<form method="post" action="/Admin/Position/Create">
+    <div class="mb-3">
+        <label for="UserId" class="form-label">Kullanıcı ID</label>
+        <input type="number" name="UserId" id="UserId" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label for="Title" class="form-label">Başlık</label>
+        <input type="text" name="Title" id="Title" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label for="Description" class="form-label">Açıklama</label>
+        <textarea name="Description" id="Description" class="form-control"></textarea>
+    </div>
+    <div class="mb-3">
+        <label for="AssignedDate" class="form-label">Başlama Tarihi</label>
+        <input type="date" name="AssignedDate" id="AssignedDate" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-success">Kaydet</button>
+    <a href="/Admin/Position/Index" class="btn btn-secondary">Geri Dön</a>
+</form>

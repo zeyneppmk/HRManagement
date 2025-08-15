@@ -1,0 +1,277 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="Admin Panel - HR Management System" />
+    <meta name="author" content="Your Company Name" />
+
+    <title>@ViewData["Title"] - Admin Panel</title>
+
+    <!-- FontAwesome & Bootstrap -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.css" rel="stylesheet" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+
+
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .sidebar {
+            height: 100vh;
+            width: 250px;
+            background-color: #0d1321;
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding-top: 60px;
+            color: white;
+            overflow-y: auto;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .sidebar-header {
+            text-align: center;
+            color: #fff;
+            font-size: 20px;
+            font-weight: bold;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .sidebar .nav-link {
+            color: #ccc;
+            font-size: 16px;
+            padding: 12px 20px;
+            border-radius: 5px;
+            margin: 5px 10px;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease-in-out;
+        }
+
+            .sidebar .nav-link i {
+                color: #66fcf1;
+                margin-right: 10px;
+            }
+
+        .main-content {
+            margin-left: 250px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .navbar-custom {
+            background-color: #394867;
+            color: white;
+            padding: 10px 20px;
+        }
+
+        .footer {
+            background-color: #f8f9fa;
+            padding: 10px 20px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            color: white;
+        }
+
+            .user-info img {
+                border-radius: 50%;
+                height: 32px;
+                width: 32px;
+            }
+
+        .content-wrapper {
+            flex: 1;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        .navbar-search {
+            width: 300px;
+        }
+
+        .notification-card, .notification-item {
+            padding: 12px 16px;
+            border-radius: 10px;
+            margin: 8px 20px; /* üst-alt 8px, sağ-sol 20px (yaklaşık 2cm) */
+            color: #1e293b;
+            background: linear-gradient(135deg, rgba(126, 103, 236, 0.15), rgba(93, 220, 255, 0.15));
+            backdrop-filter: blur(10px);
+            word-wrap: break-word;
+            white-space: normal;
+            overflow-wrap: break-word;
+            line-height: 1.4;
+            max-width: calc(100% - 40px); /* sağ-sol margin toplamı kadar küçültme */
+        }
+
+            .notification-card strong, .notification-item strong {
+                display: block;
+                font-weight: 600;
+                word-break: break-word;
+            }
+
+            .notification-card small, .notification-item small {
+                color: #000 !important;
+            }
+
+            .notification-card:hover {
+                background: linear-gradient(135deg, rgba(126, 103, 236, 0.6), rgba(93, 220, 255, 0.6));
+                opacity: 0.95;
+            }
+
+
+
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-header">Admin Panel</div>
+        <ul class="nav flex-column mt-4">
+            <li class="nav-item"><a href="/Admin/Dashboard" class="nav-link"><i class="fas fa-chart-line text-primary"></i> Dashboard</a></li>
+            <li class="nav-item"><a href="/Admin/User" class="nav-link"><i class="fas fa-users text-primary"></i> Users</a></li>
+            <li class="nav-item"><a href="/Admin/Department" class="nav-link"><i class="fas fa-building text-primary"></i> Departments</a></li>
+            <li class="nav-item"><a href="/Admin/Position" class="nav-link"><i class="fas fa-network-wired text-primary"></i> Positions</a></li>
+            <li class="nav-item"><a href="/Admin/Payment" class="nav-link"><i class="fas fa-wallet text-primary"></i> Ödemeler</a></li>
+            <li class="nav-item"><a href="/Admin/TaskItem" class="nav-link"><i class="fas fa-tasks text-primary"></i> Görevler</a></li>
+            <li class="nav-item"><a href="/Admin/LeaveRequest" class="nav-link"><i class="fas fa-calendar-check text-primary"></i> İzinler</a></li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-toggle="collapse" href="#eventMenu" role="button" aria-expanded="false">
+                    <i class="fas fa-calendar-alt text-primary"></i> Events
+                </a>
+                <div class="collapse" id="eventMenu">
+                    <ul class="nav flex-column ms-3">
+                        <li class="nav-item"><a href="/Admin/Event" class="nav-link">Takvim</a></li>
+                        <li class="nav-item"><a href="/Admin/Event/CalendarList" class="nav-link">Etkinlik Listesi</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li class="nav-item"><a href="/Admin/Reports" class="nav-link"><i class="fas fa-chart-pie text-primary"></i> Reports</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Navbar -->
+        <div class="navbar-custom d-flex justify-content-between align-items-center">
+            <!-- Search -->
+            <div class="input-group navbar-search">
+                <input type="text" class="form-control" placeholder="Search for...">
+                <button class="btn btn-primary"><i class="fas fa-search"></i></button>
+            </div>
+
+            <!-- Right Side -->
+            <div class="d-flex align-items-center gap-4">
+                <!-- Zil Bildirim Dropdown -->
+                <div class="dropdown">
+                    <a class="nav-link position-relative text-white" href="#" role="button" data-bs-toggle="dropdown">
+                        <i class="fas fa-bell fa-lg"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="notificationCount">0</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" style="width: 300px;" id="notificationList">
+                        <li class="dropdown-header">Yeni Bildirimler</li>
+                        <li><hr class="dropdown-divider"></li>
+                        <!-- SignalR ile eklenecek -->
+                    </ul>
+                </div>
+
+                <!-- Mesajlar -->
+                <a href="/Admin/Notification" class="position-relative text-white">
+                    <i class="fas fa-envelope fa-lg"></i>
+                    <span class="position-absolute top-0 start-100 translate-middle badge bg-danger">7</span>
+                </a>
+
+                <!-- Profil -->
+                <div class="d-flex align-items-center text-white">
+                    <div class="me-2 text-end">
+                        <div class="fw-semibold">Dylan Hunter</div>
+                        <div class="small">Admin Profile</div>
+                    </div>
+                    <img src="https://cdn.pixabay.com/photo/2020/06/21/05/58/bohemian-5323330_1280.png" alt="Profile" style="width:40px;height:40px;border-radius:50%;">
+                </div>
+            </div>
+        </div>
+
+
+        <!-- View Content -->
+        <div class="content-wrapper">
+            @RenderBody()
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <span class="text-muted">Copyright © Your Website 2025</span>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+    @RenderSection("Scripts", required: false)
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>lucide.createIcons();</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.0/signalr.min.js"></script>
+
+    <!-- 🔔 SignalR Bildirim Scripti -->
+    <script>
+        const connection = new signalR.HubConnectionBuilder()
+            .withUrl("/notificationHub")
+            .build();
+
+        // Bildirim kutusuna öğe ekleyen fonksiyon
+        function renderNotification(title, date) {
+            const list = document.getElementById("notificationList");
+            const li = document.createElement("li");
+            li.innerHTML = `
+                <div class="dropdown-item notification-card">
+                    <strong>${title}</strong><br/>
+                    <small class="text-light">${new Date(date).toLocaleString()}</small>
+                </div>
+            `;
+            list.appendChild(li);
+        }
+
+        // SignalR ile gelen bildirimleri ekle
+        connection.on("ReceiveNotification", function (data) {
+            const countElement = document.getElementById("notificationCount");
+            let count = parseInt(countElement.innerText) || 0;
+            countElement.innerText = count + 1;
+
+            renderNotification(data.title, data.createdAt);
+        });
+
+        connection.start().catch(err => console.error(err.toString()));
+
+        // Sayfa yüklendiğinde geçmiş bildirimleri getir
+        document.addEventListener("DOMContentLoaded", function () {
+            fetch("/Admin/Notification/GetAllForDropdown")
+                .then(res => res.json())
+                .then(data => {
+                    const countElement = document.getElementById("notificationCount");
+                    countElement.innerText = data.length;
+
+                    data.forEach(n => renderNotification(n.title, n.createdAt));
+                });
+        });
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+</body>
+</html>

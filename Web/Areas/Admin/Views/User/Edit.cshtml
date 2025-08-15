@@ -1,0 +1,51 @@
+﻿@model HRManagement.DTOs.UserDto
+@{
+    ViewData["Title"] = "Kullanıcı Düzenle";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    var roleList = ViewBag.Roles as List<SelectListItem>;
+    var departmentList = ViewBag.Departments as List<SelectListItem>;
+}
+
+<div class="container">
+    <h2 class="mb-4">@ViewData["Title"]</h2>
+
+    <form asp-action="Edit" method="post">
+        <input type="hidden" asp-for="UserId" />
+
+        <div class="mb-3">
+            <label asp-for="FirstName" class="form-label">Ad</label>
+            <input asp-for="FirstName" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="LastName" class="form-label">Soyad</label>
+            <input asp-for="LastName" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Email" class="form-label">Email</label>
+            <input asp-for="Email" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="RoleId" class="form-label">Rol</label>
+            <select asp-for="RoleId" asp-items="roleList" class="form-select">
+                <option value="">-- Rol Seçin --</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="DepartmentId" class="form-label">Bölüm</label>
+            <select asp-for="DepartmentId" asp-items="departmentList" class="form-select">
+                <option value="">-- Bölüm Seçin --</option>
+            </select>
+        </div>
+
+        <div class="form-check mb-3">
+            <input asp-for="IsActive" class="form-check-input" type="checkbox" />
+            <label asp-for="IsActive" class="form-check-label">Aktif mi?</label>
+        </div>
+
+        <button type="submit" class="btn btn-success">Güncelle</button>
+    </form>
+</div>

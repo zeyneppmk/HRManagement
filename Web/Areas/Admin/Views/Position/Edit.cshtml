@@ -1,0 +1,30 @@
+﻿
+@model HRManagement.DTOs.PozisyonDto
+@{
+    ViewData["Title"] = "Pozisyon Düzenle";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h3 class="mb-3">Pozisyon Düzenle</h3>
+
+<form method="post" action="/Admin/Position/Edit">
+    <input type="hidden" name="PozisyonId" value="@Model.PozisyonId" />
+    <div class="mb-3">
+        <label for="UserId" class="form-label">Kullanıcı ID</label>
+        <input type="number" name="UserId" id="UserId" class="form-control" value="@Model.UserId" />
+    </div>
+    <div class="mb-3">
+        <label for="Title" class="form-label">Başlık</label>
+        <input type="text" name="Title" id="Title" class="form-control" value="@Model.Title" />
+    </div>
+    <div class="mb-3">
+        <label for="Description" class="form-label">Açıklama</label>
+        <textarea name="Description" id="Description" class="form-control">@Model.Description</textarea>
+    </div>
+    <div class="mb-3">
+        <label for="AssignedDate" class="form-label">Başlama Tarihi</label>
+        <input type="date" name="AssignedDate" id="AssignedDate" class="form-control" value="@Model.AssignedDate.ToString("yyyy-MM-dd")" />
+    </div>
+    <button type="submit" class="btn btn-primary">Güncelle</button>
+    <a href="/Admin/Position/Index" class="btn btn-secondary">Geri Dön</a>
+</form>

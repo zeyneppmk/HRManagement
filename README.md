@@ -1,6 +1,6 @@
 # HRManagement
 
-![Image](https://github.com/user-attachments/assets/0ba92cdf-0e14-4721-9cf4-c2ea33239283)
+![Image](https://github.com/user-attachments/assets/24fa6d36-ed1e-49a8-b187-a28143970d8c)
 
 
 📌 Proje Özeti

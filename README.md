@@ -87,13 +87,13 @@ Bu işlem sonunda uygulama, kendi web sunucusu üzerinde (Kestrel) çalışmaya 
 
 ## 📑 Log ve Hata Kontrolleri
 
-Logging: ASP.NET Core built-in logging kullanıldı.
+- **Logging**: ASP.NET Core built-in logging kullanıldı.
 
-Exception Handling: Global exception middleware ile hata yakalama.
+- **Exception Handling**: Global exception middleware ile hata yakalama.
 
-Validations: FluentValidation & DataAnnotations.
+- **Validations**: FluentValidation & DataAnnotations.
 
-Debugging: Development ortamında ayrıntılı hata mesajları, Production’da kullanıcı dostu hata sayfaları.
+- **Debugging**: Development ortamında ayrıntılı hata mesajları, Production’da kullanıcı dostu hata sayfaları.
 
 ---
 
@@ -159,5 +159,10 @@ Debugging: Development ortamında ayrıntılı hata mesajları, Production’da 
 
 - **Reports**: Maaş dağılımı, görev istatistikleri, kullanıcı rol dağılımları
 
+---
 
+## ❓ Soru / İletişim
 
+Herhangi bir sorunuz varsa  [GitHub Issues](https://github.com/zeyneppmk/HRManagement/issues) bölümünden yeni bir issue açabilirsiniz.
+
+⭐ Bu projeyi beğendiyseniz yıldız vermeyi unutmayın!

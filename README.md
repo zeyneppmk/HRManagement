@@ -55,3 +55,31 @@ Sistem, ASP.NET Core MVC + API mimarisi ile katmanlı bir yapıda geliştirilmi�
   - 📅 LeaveRequests, TaskItems, AppNotifications
   - 📊 Events (General vs Holidays), Reports, Payments
 
+---
+
+## ⚙️ Kurulum Adımları
+
+**1.** Repository’yi klonlayın:
+```bash
+git clone https://github.com/kullanici/hrmanagement.git
+cd hrmanagement
+```
+
+
+**2.** `appsettings.json` içinde veritabanı bağlantısını düzenleyin.
+
+**3.** Migration ve veritabanı güncellemelerini çalıştırın:
+```bash
+dotnet ef database update
+```
+
+**4.** Projeyi çalıştırın:
+- Visual Studio kullanıyorsanız F5 ile başlatabilirsiniz.
+- Terminal üzerinden çalıştırmak için:
+  
+```bash
+dotnet run
+```
+
+Bu işlem sonunda uygulama, kendi web sunucusu üzerinde (Kestrel) çalışmaya başlayacaktır.
+

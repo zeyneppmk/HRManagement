@@ -38,25 +38,25 @@ Sistem, ASP.NET Core MVC + API mimarisi ile katmanlı bir yapıda geliştirilmi�
 
 - **Backend (API Katmanı)**
 
-- .NET Core Web API
+ - .NET Core Web API
 
-- Entity Framework Core (Code-First)
+ - Entity Framework Core (Code-First)
 
-- Repository + UnitOfWork
+ - Repository + UnitOfWork
 
-- DTO + AutoMapper
+ - DTO + AutoMapper
 
 - **Frontend (MVC Katmanı)**
 
-- ASP.NET Core MVC (Areas: Admin, Manager, Employee)
+ - ASP.NET Core MVC (Areas: Admin, Manager, Employee)
 
-- Bootstrap + Custom CSS
+ - Bootstrap + Custom CSS
 
-- SignalR entegrasyonu
+ - SignalR entegrasyonu
 
 - **Veritabanı**
 
-- SQL Server (EF Core Migrations ile yönetim)
+ - SQL Server (EF Core Migrations ile yönetim)
 
 - **Modüller**
 

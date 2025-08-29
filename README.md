@@ -37,21 +37,21 @@ Sistem, ASP.NET Core MVC + API mimarisi ile katmanlı bir yapıda geliştirilmi�
 ## 🏗️ Sistemin Mimarisi
 
 - **Backend (API Katmanı)**
- - ⚡.NET Core Web API
- - 🗄️Entity Framework Core (Code-First)
- - 🔄 Repository + UnitOfWork
- - 📦 DTO + AutoMapper
+  - ⚡.NET Core Web API
+  - 🗄️Entity Framework Core (Code-First)
+  - 🔄 Repository + UnitOfWork
+  - 📦 DTO + AutoMapper
 
 - **Frontend (MVC Katmanı)**
- - 🧭 ASP.NET Core MVC (Areas: Admin, Manager, Employee)
- - 🎨 Bootstrap + Custom CSS
- - 🔔 SignalR entegrasyonu
+  - 🧭 ASP.NET Core MVC (Areas: Admin, Manager, Employee)
+  - 🎨 Bootstrap + Custom CSS
+  - 🔔 SignalR entegrasyonu
 
 - **Veritabanı**
- - 🛢️ SQL Server (EF Core Migrations ile yönetim)
+  - 🛢️ SQL Server (EF Core Migrations ile yönetim)
 
 - **Modüller**
- - 👥 Users, Departments, Roles, UserDetails
- - 📅 LeaveRequests, TaskItems, AppNotifications
- - 📊 Events (General vs Holidays), Reports, Payments
+  - 👥 Users, Departments, Roles, UserDetails
+  - 📅 LeaveRequests, TaskItems, AppNotifications
+  - 📊 Events (General vs Holidays), Reports, Payments
 

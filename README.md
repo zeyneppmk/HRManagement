@@ -1,7 +1,8 @@
-#HRManagement
+# HRManagement
 
 <img width="750" height="375" alt="image" src="https://github.com/user-attachments/assets/c2d8b2e6-23dc-4224-8fd0-4426f293b310" />
 
+---
 
 📌 Proje Özeti
 

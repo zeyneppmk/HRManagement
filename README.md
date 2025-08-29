@@ -3,6 +3,7 @@
 <img width="1919" height="910" alt="image" src="https://github.com/user-attachments/assets/8dfaa1e8-1ad9-4ee3-b7eb-359ae59e3dc6" />
 <img width="1600" height="840" alt="image" src="https://github.com/user-attachments/assets/717298ea-c39f-4453-955c-d49c9df69177" />
 <img width="1200" height="787" alt="image" src="https://github.com/user-attachments/assets/6d7c3218-85b4-4cd9-b42c-83e3aff9e9e4" />
+<img width="736" height="1308" alt="image" src="https://github.com/user-attachments/assets/3ddfdce8-78ee-43ee-aa0f-59d3d4fc4456" />
 
 
 📌 Proje Özeti

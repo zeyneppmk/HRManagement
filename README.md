@@ -119,6 +119,8 @@ Bu işlem sonunda uygulama, kendi web sunucusu üzerinde (Kestrel) çalışmaya 
 
 - Raporlama
 
+**4.** Bildirimler SignalR ile anlık güncellenir.
+
 <img width="1900" height="917" alt="image" src="https://github.com/user-attachments/assets/816bd4e2-44fa-43b4-ae47-a6e87470fbc2" />
 <img width="1919" height="903" alt="image" src="https://github.com/user-attachments/assets/0cab7bb0-4747-4d02-b50e-68e5bc9e1968" />
 <img width="1919" height="905" alt="image" src="https://github.com/user-attachments/assets/2043a895-d51b-420e-9517-51a4dbcf83f6" />
@@ -131,9 +133,6 @@ Bu işlem sonunda uygulama, kendi web sunucusu üzerinde (Kestrel) çalışmaya 
 <img width="1609" height="904" alt="image" src="https://github.com/user-attachments/assets/4d2b7a1a-f030-4cc1-ba09-0288e7791b5f" />
 <img width="1606" height="510" alt="image" src="https://github.com/user-attachments/assets/d1717097-50ae-4850-b832-02e7b3abd2b8" />
 <img width="1610" height="912" alt="image" src="https://github.com/user-attachments/assets/18cb4267-2dcd-4b87-ad12-934743658bc2" />
-
-
-**4.** Bildirimler SignalR ile anlık güncellenir.
 
 ---
 

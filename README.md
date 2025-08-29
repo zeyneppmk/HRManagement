@@ -1,6 +1,7 @@
 #HRManagement
 <img width="1919" height="913" alt="image" src="https://github.com/user-attachments/assets/b6e2404e-0f67-41f1-95a2-ffe7f64a8ec5" />
 <img width="1919" height="910" alt="image" src="https://github.com/user-attachments/assets/8dfaa1e8-1ad9-4ee3-b7eb-359ae59e3dc6" />
+<img width="1600" height="840" alt="image" src="https://github.com/user-attachments/assets/717298ea-c39f-4453-955c-d49c9df69177" />
 
 📌 Proje Özeti
 

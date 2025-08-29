@@ -83,3 +83,81 @@ dotnet run
 
 Bu işlem sonunda uygulama, kendi web sunucusu üzerinde (Kestrel) çalışmaya başlayacaktır.
 
+---
+
+## 📑 Log ve Hata Kontrolleri
+
+Logging: ASP.NET Core built-in logging kullanıldı.
+
+Exception Handling: Global exception middleware ile hata yakalama.
+
+Validations: FluentValidation & DataAnnotations.
+
+Debugging: Development ortamında ayrıntılı hata mesajları, Production’da kullanıcı dostu hata sayfaları.
+
+---
+
+## 🖥️ Kullanım
+
+**1.** Kullanıcı giriş ekranı → rol bazlı yönlendirme (Admin, Manager, Employee).
+
+**2.** Dashboard üzerinden hızlı erişim kartları ve özet istatistikler.
+
+**3.** Sidebar’dan modüllere erişim:
+
+- Kullanıcı Yönetimi
+
+- Departman & Pozisyon Yönetimi
+
+- İzin Talepleri
+
+- Görev Yönetimi
+
+- Bildirimler (Inbox)
+
+- Etkinlik Takvimi
+
+- Raporlama
+
+**4.** Bildirimler SignalR ile anlık güncellenir.
+
+---
+
+## 🛠️ Geliştirici Notları
+
+- Areas yapısı sayesinde her rol için ayrı layout ve sidebar kullanılmıştır.
+
+- AppNotification modülü hem görev hem izin süreçleriyle entegredir.
+
+- TaskItem durumları enum ile yönetilir (Planned, In Progress, Completed, Incompleted).
+
+- Raporlar LINQ üzerinden join, groupby ve orderby ile dinamik hazırlanır.
+
+- Dashboard chartları için JavaScript chart kütüphaneleri entegre edilmiştir.
+
+## 🔧 Sorun Giderme
+
+- **Veritabanı hatası**: dotnet ef database update ile migration kontrol edin.
+
+- **SignalR çalışmıyor**: Hub URL’sinin UI tarafında doğru tanımlandığını kontrol edin.
+
+- **Login başarısız**: JWT/Identity ayarlarının appsettings.json dosyasında güncel olduğundan emin olun.
+
+- **UI bozuk**: Tarayıcı cache temizleyin ve npm run build (varsa) çalıştırın.
+
+---
+
+## 🎥 Demo
+
+- **Login & Rol Bazlı Erişim**: Admin → Dashboard & tüm modüller
+
+- **LeaveRequest Workflow**: Employee → izin talebi → Manager onayı → HR raporlaması
+
+- **Task Assignment**: Manager → çalışanlara görev → anlık bildirim + görev takibi
+
+- **Calendar & Events**: FullCalendar üzerinde etkinlik/izin günleri
+
+- **Reports**: Maaş dağılımı, görev istatistikleri, kullanıcı rol dağılımları
+
+
+

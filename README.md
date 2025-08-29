@@ -119,6 +119,20 @@ Bu işlem sonunda uygulama, kendi web sunucusu üzerinde (Kestrel) çalışmaya 
 
 - Raporlama
 
+<img width="1900" height="917" alt="image" src="https://github.com/user-attachments/assets/816bd4e2-44fa-43b4-ae47-a6e87470fbc2" />
+<img width="1919" height="903" alt="image" src="https://github.com/user-attachments/assets/0cab7bb0-4747-4d02-b50e-68e5bc9e1968" />
+<img width="1919" height="905" alt="image" src="https://github.com/user-attachments/assets/2043a895-d51b-420e-9517-51a4dbcf83f6" />
+<img width="1919" height="908" alt="image" src="https://github.com/user-attachments/assets/58050b15-ac53-4f91-b2a1-c1e78c96b4bb" />
+<img width="1919" height="857" alt="image" src="https://github.com/user-attachments/assets/d12b9e08-fa4f-43ff-81c3-c93a5674d2e9" />
+<img width="1919" height="830" alt="image" src="https://github.com/user-attachments/assets/b39bfe9d-2061-44cc-9303-be7e526f8969" />
+<img width="1919" height="903" alt="image" src="https://github.com/user-attachments/assets/ad80123f-5f90-494b-9bd7-d49beffcd0cd" />
+<img width="1919" height="910" alt="image" src="https://github.com/user-attachments/assets/26e00a08-e628-487d-a372-b1b73951ace6" />
+<img width="1608" height="911" alt="image" src="https://github.com/user-attachments/assets/a2159bde-bc1c-40cd-98dc-61bcff105c22" />
+<img width="1609" height="904" alt="image" src="https://github.com/user-attachments/assets/4d2b7a1a-f030-4cc1-ba09-0288e7791b5f" />
+<img width="1606" height="510" alt="image" src="https://github.com/user-attachments/assets/d1717097-50ae-4850-b832-02e7b3abd2b8" />
+<img width="1610" height="912" alt="image" src="https://github.com/user-attachments/assets/18cb4267-2dcd-4b87-ad12-934743658bc2" />
+
+
 **4.** Bildirimler SignalR ile anlık güncellenir.
 
 ---
